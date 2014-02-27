@@ -39,3 +39,62 @@ load_dotfiles() {
 
 load_dotfiles
 unset load_dotfiles
+
+
+export CLOJURESCRIPT_HOME=/Users/sergi/programming/clojurescript
+
+# Customize to your needs...
+
+export GOROOT=$HOME/programming/go
+export GOPATH=$HOME/programming/gocode
+
+export PATH=$HOME/bin:/usr/local/bin:/usr/local/sbin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/Cellar/ruby/1.9.3-p385/lib/ruby/gems/1.9.1/gems/jekyll-0.12.0/bin:/usr/local/share/npm/bin:/Users/sergi/.cabal/bin:/Users/sergi/programming/android-sdk/platform-tools:/Users/sergi/programming/KindleGen_Mac_i386_v2_8:$CLOJURESCRIPT_HOME/bin:$GOROOT/bin:$GOPATH/bin¬
+
+GAIADIR="/Users/sergi/programming/gaia-comoyo"
+NIGHTLY="/Applications/FirefoxNightly.app/Contents/MacOS"
+FF18="/Users/sergi/programming/Firefox.app/Contents/MacOS"
+
+launch_tests() {
+  cd $GAIADIR
+  if [ ! -d profile/extensions/httpd ] ; then
+    DEBUG=1 make
+  fi
+
+  $NIGHTLY/firefox --no-remote -profile $GAIADIR/profile-debug/ http://test-agent.gaiamobile.org:8080/ &
+
+  make test-agent-server
+}
+
+launch_tests_travis() {
+  cd $GAIADIR
+  if [ ! -d profile/extensions/httpd ] ; then
+    DEBUG=1 make
+  fi
+
+  $FF18/firefox --no-remote -profile $GAIADIR/profile-debug/ http://test-agent.gaiamobile.org:8080/ &
+
+  make test-agent-server
+}
+
+source ~/.nvm/nvm.sh
+nvm use 0.10
+
+. /Users/sergi/.opam/opam-init/init.sh > /dev/null 2> /dev/null || true
+
+. $HOME/programming/base16-shell/base16-tomorrow.dark.sh
+
+export MARKPATH=$HOME/.marks
+function jump {
+    cd -P "$MARKPATH/$1" 2>/dev/null || echo "No such mark: $1"
+}
+function mark {
+    mkdir -p "$MARKPATH"; ln -s "$(pwd)" "$MARKPATH/$1"
+}
+function unmark {
+    rm -i "$MARKPATH/$1"
+}
+function marks {
+    ls -l "$MARKPATH" | sed 's/  / /g' | cut -d' ' -f9- | sed 's/ -/\t-/g' && echo
+}
+
+export GECKO_PATH=/Users/sergi/programming/mozilla-central

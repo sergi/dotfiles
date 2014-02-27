@@ -52,3 +52,4 @@ alias showdeskicons="defaults write com.apple.finder CreateDesktop -bool true &&
 alias hidedeskicons="defaults write com.apple.finder CreateDesktop -bool false && killall Finder"
 
 alias nw="/Users/sergi/bin/node-webkit.app/Contents/MacOS/node-webkit"
+alias julia="exec '/Applications/Julia-0.2.0.app/Contents/Resources/julia/bin/julia'"
