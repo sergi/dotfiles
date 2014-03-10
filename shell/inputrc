@@ -17,3 +17,6 @@ set show-all-if-ambiguous on
 # through commands (i.e. more intelligent Up/Down-arrow behavior)
 "\e[B": history-search-forward
 "\e[A": history-search-backward
+
+set completion-query-items 0
+set page-completions off

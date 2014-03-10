@@ -129,7 +129,9 @@ mirrorfiles() {
     link "git/gitattributes"  ".gitattributes"
     link "git/gitignore"      ".gitignore"
     link "vim"                ".vim"
-    link "vim/.vimrc"          ".vimrc"
+
+    link "shell/tmux.conf"    ".tmux.conf"
+    link "irssi"    ".irssi"
 
     e_success "Dotfiles update complete!"
 }
