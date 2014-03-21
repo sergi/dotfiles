@@ -98,3 +98,6 @@ function marks {
 }
 
 export GECKO_PATH=/Users/sergi/programming/mozilla-central
+[ -n "$TMUX" ] && export TERM=screen-256color
+# No completion on empty command
+shopt -s no_empty_cmd_completion
