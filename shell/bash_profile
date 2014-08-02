@@ -48,7 +48,7 @@ export CLOJURESCRIPT_HOME=/Users/sergi/programming/clojurescript
 export GOROOT=$HOME/programming/go
 export GOPATH=$HOME/programming/gocode
 
-export PATH=$HOME/bin:/usr/local/bin:/usr/local/sbin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/Cellar/ruby/1.9.3-p385/lib/ruby/gems/1.9.1/gems/jekyll-0.12.0/bin:/usr/local/share/npm/bin:/Users/sergi/.cabal/bin:/Users/sergi/programming/android-sdk/platform-tools:/Users/sergi/programming/KindleGen_Mac_i386_v2_8:$CLOJURESCRIPT_HOME/bin:$GOROOT/bin:$GOPATH/bin¬
+export PATH=$HOME/bin:/usr/local/bin:/usr/local/sbin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/Cellar/ruby/2.1.2/bin:/usr/local/share/npm/bin:/Users/sergi/.cabal/bin:/Users/sergi/programming/android-sdk/platform-tools:/Users/sergi/programming/KindleGen_Mac_i386_v2_8:$CLOJURESCRIPT_HOME/bin:$GOROOT/bin:$GOPATH/bin¬
 
 GAIADIR="/Users/sergi/programming/gaia-sergi"
 NIGHTLY="/Applications/FirefoxNightly.app/Contents/MacOS"
