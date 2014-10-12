@@ -48,11 +48,10 @@ export CLOJURESCRIPT_HOME=/Users/sergi/programming/clojurescript
 export GOROOT=$HOME/programming/go
 export GOPATH=$HOME/programming/gocode
 
-export PATH=$HOME/bin:/usr/local/bin:/usr/local/sbin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/Cellar/ruby/2.1.2/bin:/usr/local/share/npm/bin:/Users/sergi/.cabal/bin:/Users/sergi/programming/android-sdk/platform-tools:/Users/sergi/programming/KindleGen_Mac_i386_v2_8:$CLOJURESCRIPT_HOME/bin:$GOROOT/bin:$GOPATH/bin¬
+export PATH=$HOME/bin:/usr/local/bin:/usr/local/sbin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/Cellar/ruby/2.1.2/bin:/usr/local/share/npm/bin:/Users/sergi/.cabal/bin:/Users/sergi/programming/android-sdk/platform-tools:/Users/sergi/programming/KindleGen_Mac_i386_v2_8:$CLOJURESCRIPT_HOME/bin:$GOROOT/bin:$GOPATH/bin:/Applications/Racket\ v6.1/bin
 
-GAIADIR="/Users/sergi/programming/gaia-sergi"
+GAIADIR="/Users/sergi/programming/gaia"
 NIGHTLY="/Applications/FirefoxNightly.app/Contents/MacOS"
-FF18="/Users/sergi/programming/Firefox.app/Contents/MacOS"
 
 launch_tests() {
   cd $GAIADIR
@@ -65,15 +64,16 @@ launch_tests() {
   make test-agent-server
 }
 
-launch_tests_travis() {
+launch_tests_cov() {
   cd $GAIADIR
   if [ ! -d profile/extensions/httpd ] ; then
     DEBUG=1 make
   fi
 
-  $FF18/firefox --no-remote -profile $GAIADIR/profile-debug/ http://test-agent.gaiamobile.org:8080/ &
+  $NIGHTLY/firefox --no-remote -profile $GAIADIR/profile-debug/ http://test-agent.gaiamobile.org:8080/ &
 
   make test-agent-server
+  make test-agent-test APP=settings COVERAGE=1
 }
 
 source ~/.nvm/nvm.sh
@@ -101,3 +101,4 @@ export GECKO_PATH=/Users/sergi/programming/mozilla-central
 [ -n "$TMUX" ] && export TERM=screen-256color
 # No completion on empty command
 shopt -s no_empty_cmd_completion
+export JAVA_HOME=$(/usr/libexec/java_home)
