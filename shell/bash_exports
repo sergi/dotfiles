@@ -35,8 +35,7 @@ export PROMPT_COMMAND="history -a; $PROMPT_COMMAND"
 export LC_ALL=en_US.UTF-8
 export LANG=en_US.UTF-8
 export CLOJURESCRIPT_HOME=/Users/sergi/programming/clojurescript
-export GOROOT=$HOME/programming/go
-export GOPATH=$HOME/programming/gocode
+export GOPATH=$HOME/programming/go
 export GECKO_PATH=/Users/sergi/programming/mozilla-central
 
 
@@ -45,4 +44,4 @@ export GREP_OPTIONS="--color=auto";
 # Link Homebrew casks in `/Applications` rather than `~/Applications`
 export HOMEBREW_CASK_OPTS="--appdir=/Applications";
 
-export PATH=$HOME/bin:/usr/local/bin:/usr/local/sbin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/Cellar/ruby/2.1.2/bin:/usr/local/share/npm/bin:/Users/sergi/.cabal/bin:/Users/sergi/programming/android-sdk/platform-tools:/Users/sergi/programming/KindleGen_Mac_i386_v2_8:$CLOJURESCRIPT_HOME/bin:/Users/sergi/.nvm/v0.10.7/bin:$GOROOT/bin:$GOPATH/bin¬
+export PATH=$HOME/bin:/usr/local/bin:/usr/local/sbin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/Cellar/ruby/2.1.2/bin:/usr/local/share/npm/bin:/Users/sergi/.cabal/bin:/Users/sergi/programming/android-sdk/platform-tools:/Users/sergi/programming/KindleGen_Mac_i386_v2_8:$CLOJURESCRIPT_HOME/bin:/Users/sergi/.nvm/v0.10.7/bin::$GOPATH/bin¬

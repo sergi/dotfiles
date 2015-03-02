@@ -2,6 +2,9 @@
 
 # bash_profile
 
+# http://stackoverflow.com/questions/3446320/in-vim-how-to-map-save-to-ctrl-s
+stty -ixon
+
 # set 256 color profile where possible
 if [[ $COLORTERM == gnome-* && $TERM == xterm ]] && infocmp gnome-256color >/dev/null 2>&1; then
   export TERM=gnome-256color
@@ -45,10 +48,7 @@ export CLOJURESCRIPT_HOME=/Users/sergi/programming/clojurescript
 
 # Customize to your needs...
 
-export GOROOT=$HOME/programming/go
-export GOPATH=$HOME/programming/gocode
-
-export PATH=$HOME/bin:/usr/local/bin:/usr/local/sbin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/Cellar/ruby/2.1.2/bin:/usr/local/share/npm/bin:/Users/sergi/.cabal/bin:/Users/sergi/programming/android-sdk/platform-tools:/Users/sergi/programming/KindleGen_Mac_i386_v2_8:$CLOJURESCRIPT_HOME/bin:$GOROOT/bin:$GOPATH/bin:/Applications/Racket\ v6.1/bin
+export PATH=$HOME/bin:/usr/local/bin:/usr/local/sbin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/Cellar/ruby/2.1.2/bin:/usr/local/share/npm/bin:/Users/sergi/.cabal/bin:/Users/sergi/programming/android-sdk/platform-tools:/Users/sergi/programming/KindleGen_Mac_i386_v2_8:$CLOJURESCRIPT_HOME/bin:/Applications/Racket\ v6.1.1/bin:/usr/local/opt/go/libexec/bin:/usr/local/go/bin
 
 GAIADIR="/Users/sergi/programming/gaia"
 NIGHTLY="/Applications/FirefoxNightly.app/Contents/MacOS"
@@ -76,8 +76,9 @@ launch_tests_cov() {
   make test-agent-test APP=settings COVERAGE=1
 }
 
-source ~/.nvm/nvm.sh
-nvm use 0.10
+export NVM_DIR=~/.nvm
+source $(brew --prefix nvm)/nvm.sh
+nvm use 0.12
 
 . /Users/sergi/.opam/opam-init/init.sh > /dev/null 2> /dev/null || true
 
@@ -102,6 +103,10 @@ export GECKO_PATH=/Users/sergi/programming/mozilla-central
 # No completion on empty command
 shopt -s no_empty_cmd_completion
 export JAVA_HOME=$(/usr/libexec/java_home)
+export PKG_CONFIG_PATH=/usr/local/lib/pkgconfig
+
+export GOPATH=$HOME/go
+
 
 # Case-insensitive globbing (used in pathname expansion)
 shopt -s nocaseglob;
@@ -125,3 +130,10 @@ if which brew > /dev/null && [ -f "$(brew --prefix)/etc/bash_completion" ]; then
 elif [ -f /etc/bash_completion ]; then
   source /etc/bash_completion;
 fi;
+
+set -o vi
+[[ -s $(brew --prefix)/etc/profile.d/autojump.sh ]] && . $(brew --prefix)/etc/profile.d/autojump.sh
+
+# Base16 Shell
+BASE16_SHELL="$HOME/dotfiles/base16-shell/base16-default.dark.sh"
+[[ -s $BASE16_SHELL ]] && source $BASE16_SHELL

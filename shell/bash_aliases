@@ -192,6 +192,13 @@ alias afk="/System/Library/CoreServices/Menu\ Extras/User.menu/Contents/Resource
 # Reload the shell (i.e. invoke as a login shell)
 alias reload="exec $SHELL -l"
 
+alias bu="brew update"
+alias bo="brew outdated"
+alias bup="brew upgrade"
+
 # Faster npm for Europeans
 command -v npm > /dev/null && alias npme="npm --registry http://registry.npmjs.eu/"
 
+alias csi="rlwrap csi"
+
+alias gc="git checkout"
