@@ -43,14 +43,11 @@ load_dotfiles() {
 load_dotfiles
 unset load_dotfiles
 
-
-export CLOJURESCRIPT_HOME=/Users/sergi/programming/clojurescript
-
 # Customize to your needs...
 
-export PATH=$HOME/bin:/usr/local/bin:/usr/local/sbin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/Cellar/ruby/2.1.2/bin:/usr/local/share/npm/bin:/Users/sergi/.cabal/bin:/Users/sergi/programming/android-sdk/platform-tools:/Users/sergi/programming/KindleGen_Mac_i386_v2_8:$CLOJURESCRIPT_HOME/bin:/Applications/Racket\ v6.1.1/bin:/usr/local/opt/go/libexec/bin:/usr/local/go/bin
+export PATH=$HOME/bin:/usr/local/bin:/usr/local/sbin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/share/npm/bin:~/.cabal/bin:~/programming/android-sdk/platform-tools:~/programming/KindleGen_Mac_i386_v2_8:$CLOJURESCRIPT_HOME/bin:/Applications/Racket\ v6.1.1/bin:/usr/local/opt/go/libexec/bin:/usr/local/go/bin
 
-GAIADIR="/Users/sergi/programming/gaia"
+GAIADIR="~/programming/gaia"
 NIGHTLY="/Applications/FirefoxNightly.app/Contents/MacOS"
 
 launch_tests() {
@@ -80,9 +77,7 @@ export NVM_DIR=~/.nvm
 source $(brew --prefix nvm)/nvm.sh
 nvm use 0.12
 
-. /Users/sergi/.opam/opam-init/init.sh > /dev/null 2> /dev/null || true
-
-. $HOME/programming/base16-shell/base16-tomorrow.dark.sh
+. ~/.opam/opam-init/init.sh > /dev/null 2> /dev/null || true
 
 export MARKPATH=$HOME/.marks
 function jump {
@@ -98,15 +93,15 @@ function marks {
 ls -l "$MARKPATH" | sed 's/  / /g' | cut -d' ' -f9- | sed 's/ -/\t-/g' && echo
 }
 
-export GECKO_PATH=/Users/sergi/programming/mozilla-central
+export CLOJURESCRIPT_HOME=~/programming/clojurescript
+export GECKO_PATH=~/programming/mozilla-central
+export JAVA_HOME=$(/usr/libexec/java_home)
+export PKG_CONFIG_PATH=/usr/local/lib/pkgconfig
+export GOPATH=$HOME/go
+
 [ -n "$TMUX" ] && export TERM=screen-256color
 # No completion on empty command
 shopt -s no_empty_cmd_completion
-export JAVA_HOME=$(/usr/libexec/java_home)
-export PKG_CONFIG_PATH=/usr/local/lib/pkgconfig
-
-export GOPATH=$HOME/go
-
 
 # Case-insensitive globbing (used in pathname expansion)
 shopt -s nocaseglob;
@@ -135,5 +130,8 @@ set -o vi
 [[ -s $(brew --prefix)/etc/profile.d/autojump.sh ]] && . $(brew --prefix)/etc/profile.d/autojump.sh
 
 # Base16 Shell
-BASE16_SHELL="$HOME/dotfiles/base16-shell/base16-default.dark.sh"
+BASE16_SHELL="$HOME/.dotfiles/base16-shell/base16-default.dark.sh"
 [[ -s $BASE16_SHELL ]] && source $BASE16_SHELL
+
+export CHICKEN_BUILD=~/programming/chicken-4.9.0.1
+source ~/programming/emsdk_portable/emsdk_env.sh

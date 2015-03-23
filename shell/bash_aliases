@@ -199,6 +199,7 @@ alias bup="brew upgrade"
 # Faster npm for Europeans
 command -v npm > /dev/null && alias npme="npm --registry http://registry.npmjs.eu/"
 
-export BREAK_CHARS_SCHEME="\"#'(),;\`\\|!?[]{}"
+export BREAK_CHARS_SCHEME="\"#'(),;\`\\|[]{}" # no - or ! or ?
 alias csi='rlwrap -pYellow -q "\"" -b $BREAK_CHARS_SCHEME -f $HOME/.dotfiles/lib/chicken-keywords csi'
+alias cljs='rlwrap -pYellow -q "\"" java -cp ~/lib/cljs.jar clojure.main ~/lib/node_repl.clj'
 alias gc="git checkout"
