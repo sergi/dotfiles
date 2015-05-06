@@ -75,7 +75,7 @@ launch_tests_cov() {
 
 export NVM_DIR=~/.nvm
 source $(brew --prefix nvm)/nvm.sh
-nvm use 0.12
+nvm use iojs
 
 . ~/.opam/opam-init/init.sh > /dev/null 2> /dev/null || true
 
@@ -134,4 +134,4 @@ BASE16_SHELL="$HOME/.dotfiles/base16-shell/base16-default.dark.sh"
 [[ -s $BASE16_SHELL ]] && source $BASE16_SHELL
 
 export CHICKEN_BUILD=~/programming/chicken-4.9.0.1
-source ~/programming/emsdk_portable/emsdk_env.sh
+#source ~/programming/emsdk_portable/emsdk_env.sh
