@@ -1,0 +1,23 @@
+launch_tests() {
+  cd $GAIADIR
+  if [ ! -d profile/extensions/httpd ] ; then
+    DEBUG=1 make
+  fi
+
+  $NIGHTLY/firefox --no-remote -profile $GAIADIR/profile-debug/ http://test-agent.gaiamobile.org:8080/ &
+
+  make test-agent-server
+}
+
+launch_tests_cov() {
+  cd $GAIADIR
+  if [ ! -d profile/extensions/httpd ] ; then
+    DEBUG=1 make
+  fi
+
+  $NIGHTLY/firefox --no-remote -profile $GAIADIR/profile-debug/ http://test-agent.gaiamobile.org:8080/ &
+
+  make test-agent-server
+  make test-agent-test APP=settings COVERAGE=1
+}
+
