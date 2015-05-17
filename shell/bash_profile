@@ -5,13 +5,6 @@
 # http://stackoverflow.com/questions/3446320/in-vim-how-to-map-save-to-ctrl-s
 stty -ixon
 
-# set 256 color profile where possible
-if [[ $COLORTERM == gnome-* && $TERM == xterm ]] && infocmp gnome-256color >/dev/null 2>&1; then
-  export TERM=gnome-256color
-elif infocmp xterm-256color >/dev/null 2>&1; then
-  export TERM=xterm-256color
-fi
-
 # Up-front dotfiles configuration
 # Not part of `load_dotfiles` because it must be sourced before anything else
 # to be sure that commands like `brew` (when installed in a custom location)
@@ -27,8 +20,8 @@ load_dotfiles() {
   $HOME/.dotfiles/shell/functions/* # Functions
   $HOME/.dotfiles/shell/bash_prompt # Custom bash prompt
   $HOME/.dotfiles/shell/bash_paths # Path modifications
-  $(brew --prefix)/etc/bash_completion # Bash completion (installed via Homebrew)
-  $HOME/.bash_profile.local # Local and private settings not under version control (e.g. git credentials)
+  #$(brew --prefix)/etc/bash_completion # Bash completion (installed via Homebrew)
+  #$HOME/.bash_profile.local # Local and private settings not under version control (e.g. git credentials)
   )
 
   # if these files are readable, source them
@@ -43,74 +36,18 @@ load_dotfiles() {
 load_dotfiles
 unset load_dotfiles
 
+if [ -f $(brew --prefix)/etc/bash_completion ]; then
+  . $(brew --prefix)/etc/bash_completion
+fi
+
 # Customize to your needs...
 
-export PATH=$HOME/bin:/usr/local/bin:/usr/local/sbin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/share/npm/bin:~/.cabal/bin:~/programming/android-sdk/platform-tools:~/programming/KindleGen_Mac_i386_v2_8:$CLOJURESCRIPT_HOME/bin:/Applications/Racket\ v6.1.1/bin:/usr/local/opt/go/libexec/bin:/usr/local/go/bin
-
-GAIADIR="~/programming/gaia"
-NIGHTLY="/Applications/FirefoxNightly.app/Contents/MacOS"
-
-launch_tests() {
-  cd $GAIADIR
-  if [ ! -d profile/extensions/httpd ] ; then
-    DEBUG=1 make
-  fi
-
-  $NIGHTLY/firefox --no-remote -profile $GAIADIR/profile-debug/ http://test-agent.gaiamobile.org:8080/ &
-
-  make test-agent-server
-}
-
-launch_tests_cov() {
-  cd $GAIADIR
-  if [ ! -d profile/extensions/httpd ] ; then
-    DEBUG=1 make
-  fi
-
-  $NIGHTLY/firefox --no-remote -profile $GAIADIR/profile-debug/ http://test-agent.gaiamobile.org:8080/ &
-
-  make test-agent-server
-  make test-agent-test APP=settings COVERAGE=1
-}
-
-export NVM_DIR=~/.nvm
 source $(brew --prefix nvm)/nvm.sh
 nvm use iojs
 
 . ~/.opam/opam-init/init.sh > /dev/null 2> /dev/null || true
 
-export MARKPATH=$HOME/.marks
-function jump {
-cd -P "$MARKPATH/$1" 2>/dev/null || echo "No such mark: $1"
-}
-function mark {
-mkdir -p "$MARKPATH"; ln -s "$(pwd)" "$MARKPATH/$1"
-}
-function unmark {
-rm -i "$MARKPATH/$1"
-}
-function marks {
-ls -l "$MARKPATH" | sed 's/  / /g' | cut -d' ' -f9- | sed 's/ -/\t-/g' && echo
-}
-
-export CLOJURESCRIPT_HOME=~/programming/clojurescript
-export GECKO_PATH=~/programming/mozilla-central
-export JAVA_HOME=$(/usr/libexec/java_home)
-export PKG_CONFIG_PATH=/usr/local/lib/pkgconfig
-export GOPATH=$HOME/go
-
-[ -n "$TMUX" ] && export TERM=screen-256color
-# No completion on empty command
-shopt -s no_empty_cmd_completion
-
-# Case-insensitive globbing (used in pathname expansion)
-shopt -s nocaseglob;
-
-# Append to the Bash history file, rather than overwriting it
-shopt -s histappend;
-
-# Autocorrect typos in path names when using `cd`
-shopt -s cdspell;
+[ -n "$TMUX" ]
 
 # Enable some Bash 4 features when possible:
 # * `autocd`, e.g. `**/qux` will enter `./foo/bar/baz/qux`
@@ -119,13 +56,6 @@ for option in autocd globstar; do
   shopt -s "$option" 2> /dev/null;
 done;
 
-# Add tab completion for many Bash commands
-if which brew > /dev/null && [ -f "$(brew --prefix)/etc/bash_completion" ]; then
-  source "$(brew --prefix)/etc/bash_completion";
-elif [ -f /etc/bash_completion ]; then
-  source /etc/bash_completion;
-fi;
-
 set -o vi
 [[ -s $(brew --prefix)/etc/profile.d/autojump.sh ]] && . $(brew --prefix)/etc/profile.d/autojump.sh
 
@@ -133,5 +63,5 @@ set -o vi
 BASE16_SHELL="$HOME/.dotfiles/base16-shell/base16-default.dark.sh"
 [[ -s $BASE16_SHELL ]] && source $BASE16_SHELL
 
-export CHICKEN_BUILD=~/programming/chicken-4.9.0.1
 #source ~/programming/emsdk_portable/emsdk_env.sh
+

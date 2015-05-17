@@ -14,3 +14,7 @@ shopt -s histappend
 
 # Case-insensitive globbing (used in pathname expansion)
 shopt -s nocaseglob
+
+# No completion on empty command
+shopt -s no_empty_cmd_completion
+
